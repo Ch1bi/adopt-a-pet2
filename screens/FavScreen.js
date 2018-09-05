@@ -17,6 +17,7 @@ export default class FavScreen extends React.Component {
       <View >
        
        <Text>Fav Screen!</Text>
+       
       </View>
     );
   }

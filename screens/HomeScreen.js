@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, Picker } from 'react-native';
 
 import axios from 'axios';
 
@@ -34,10 +34,18 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.titleText}>Find a companion</Text>
+        <Text style={styles.titleText}>Find a companion by </Text>
+
+        <Picker
+          selectedValue={this.state.language}
+          style={{ height: 50, width: 200 }}
+          onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+          <Picker.Item label=" " />
+          <Picker.Item label="zipcode" value="zipcode" />
+          <Picker.Item label="type" value="type" />
+        </Picker>
 
         <TextInput
-          placeholder="Enter zipcode"
           onChangeText={text => this.setState({ input: text })}
         />
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView,FlatList,Text } from 'react-native';
 
 // import { List, ListItem } from 'react-native-elements';
 
@@ -10,6 +10,11 @@ export default class ResultScreen extends React.Component {
     this.state = {
       shelters: null
     };
+  }
+
+  componentDidMount(){
+
+    this.setState({shelters:this.props.navigation.getParam('data')})
   }
 
   goToDetail = petInfo => {
@@ -25,8 +30,10 @@ export default class ResultScreen extends React.Component {
     console.log(params);
 
     return (
-      <ScrollView>
-        {/* <List>
+
+        <Text>{this.state.shelters}</Text>
+      
+        /* <List>
           {params.pet.map((val, idx) => (
             <ListItem
               roundAvatar
@@ -37,8 +44,8 @@ export default class ResultScreen extends React.Component {
               onPress={() => this.goToDetail(val)}
             />
           ))}
-        </List> */}
-      </ScrollView>
+        </List> */
+  
     );
   }
 }

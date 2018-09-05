@@ -8,7 +8,8 @@ export default class HomeScreen extends React.Component {
     super(props);
 
     this.state = {
-      input: ''
+      input: ' ',
+      pickerChoice: null
     };
   }
 
@@ -25,29 +26,38 @@ export default class HomeScreen extends React.Component {
           data: res.data.petfinder.pets
         })
       );
-  };
+  }; 
 
 
   render() {
-    //key for api
-    let key = '6a73b4c9e3c1fe19a365de064e4063ea';
+   
 
     return (
       <View style={styles.container}>
         <Text style={styles.titleText}>Find a companion by </Text>
 
+
+
         <Picker
-          selectedValue={this.state.language}
+
+          selectedValue={this.state.pickerChoice}
           style={{ height: 50, width: 200 }}
-          onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+          onValueChange={(itemValue, itemIndex) => this.setState({pickerChoice: itemValue})}>
           <Picker.Item label=" " />
           <Picker.Item label="zipcode" value="zipcode" />
           <Picker.Item label="type" value="type" />
+          
         </Picker>
 
+        {
+          this.state.pickerChoice !== null ?
         <TextInput
           onChangeText={text => this.setState({ input: text })}
-        />
+          placeholder='Enter info'
+        /> : null
+      }
+
+      <Text>{this.state.pickerChoice}</Text>
 
         <Button
           title="Submit"

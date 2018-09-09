@@ -57,7 +57,6 @@ export default class HomeScreen extends React.Component {
         /> : null
       }
 
-      <Text>{this.state.pickerChoice}</Text>
 
         <Button
           title="Submit"

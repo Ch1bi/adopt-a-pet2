@@ -14,7 +14,7 @@ export default class ResultScreen extends React.Component {
 
   componentDidMount(){
 
-    this.setState({shelters:this.props.navigation.getParam('data')})
+    // this.setState({shelters:this.props.navigation.getParam('data')})
   }
 
   goToDetail = petInfo => {
@@ -31,20 +31,12 @@ export default class ResultScreen extends React.Component {
 
     return (
 
-        <Text>{this.state.shelters}</Text>
-      
-        /* <List>
-          {params.pet.map((val, idx) => (
-            <ListItem
-              roundAvatar
-              avatar={{ uri: val.media.photos.photo[0].$t }}
-              title={val.name.$t}
-              subtitle={val.breeds.breed.$t}
-              key={idx}
-              onPress={() => this.goToDetail(val)}
-            />
-          ))}
-        </List> */
+       
+
+        <FlatList
+        data={[{key: 'a'}, {key: 'b'}]}
+        renderItem={({item}) => <Text>{item.key}</Text>}
+      />
   
     );
   }
@@ -53,7 +45,6 @@ export default class ResultScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff'
+    flexDirection: 'column'
   }
 });

@@ -8,7 +8,7 @@ export default class HomeScreen extends React.Component {
     super(props);
 
     this.state = {
-      input: ' ',
+      input: '10456',
       pickerChoice: null
     };
   }
@@ -16,14 +16,14 @@ export default class HomeScreen extends React.Component {
   getShelters = () => {
     axios
       .get(
-        `http://api.petfinder.com/pet.find?format=json&key=6a73b4c9e3c1fe19a365de064e4063ea&location=${
+        `http://api.petfinder.com/shelter.find?key=6a73b4c9e3c1fe19a365de064e4063ea&location=${
           this.state.input
-        }`
+        }&format=json`
       )
 
       .then(res =>
         this.props.navigation.navigate('Result', {
-          data: res.data.petfinder.pets
+          data: res.data.petfinder.shelters
         })
       );
   }; 
@@ -53,6 +53,7 @@ export default class HomeScreen extends React.Component {
           this.state.pickerChoice !== null ?
         <TextInput
           onChangeText={text => this.setState({ input: text })}
+          value="10456"
           placeholder='Enter info'
         /> : null
       }

@@ -1,25 +1,36 @@
 import React from 'react';
-import { StyleSheet, ScrollView,FlatList,Text } from 'react-native';
-
-// import { List, ListItem } from 'react-native-elements';
+import { StyleSheet, ScrollView,FlatList,Text, View, TouchableHighlight} from 'react-native';
 
 export default class ResultScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      shelters: null
-    };
   }
 
-  componentDidMount(){
-
-    // this.setState({shelters:this.props.navigation.getParam('data')})
-  }
 
   goToDetail = petInfo => {
     this.props.navigation.navigate('Detail', { data: petInfo });
   };
+
+  keyExtractor = (item, index) => item.id;
+
+  renderList = ({item}) =>{
+
+    return(
+
+      <TouchableHighlight
+        onPress={()=>this.goToDetail}
+      >
+            
+        <View style={{backgroundColor: 'white'}}>
+
+          <Text>{item.city.$t}</Text>
+
+        </View>
+            
+      </TouchableHighlight>
+    ) 
+  }
 
   static navigationOptions = {
     title: 'Search'
@@ -27,24 +38,27 @@ export default class ResultScreen extends React.Component {
 
   render() {
     let params = this.props.navigation.getParam('data');
-    console.log(params);
-
+    console.log(params)
     return (
 
-       
+      <View>
 
-        <FlatList
-        data={[{key: 'a'}, {key: 'b'}]}
-        renderItem={({item}) => <Text>{item.key}</Text>}
+
+           <FlatList
+            keyExtractor={this.keyExtractor}
+            data={params.shelter}
+            renderItem={this.renderList}
       />
   
-    );
+      </View>
+
+     
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column'
+    flex: 1
   }
 });

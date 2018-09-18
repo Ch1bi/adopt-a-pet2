@@ -12,7 +12,9 @@ export default class DetailScreen extends React.Component {
 
   render() {
     let params = this.props.navigation.getParam('data');
-    console.log(params);
+    console.log(params)
+    console.log(params.id.$t)
+
 
     return (
       <View style={styles.container}>

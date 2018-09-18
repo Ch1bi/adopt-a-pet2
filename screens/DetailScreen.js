@@ -16,9 +16,9 @@ export default class DetailScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text>{`${params.description.$t} 
+        {/* <Text>{`${params.description.$t} 
 
-            Contact Info: ${params.contact.email.$t}`}</Text>
+            Contact Info: ${params.contact.email.$t}`}</Text> */}
       </View>
     );
   }

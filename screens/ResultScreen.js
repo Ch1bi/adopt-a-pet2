@@ -8,23 +8,26 @@ export default class ResultScreen extends React.Component {
   }
 
 
-  goToDetail = petInfo => {
-    this.props.navigation.navigate('Detail', { data: petInfo });
+  goToDetail = (stuff) => {
+    console.log(stuff)
+    this.props.navigation.navigate('Detail', { data: stuff });
   };
 
-  keyExtractor = (item, index) => item.id;
+  // keyExtractor = (item, index) => item.name.$t;
 
   renderList = ({item}) =>{
 
     return(
 
       <TouchableHighlight
-        onPress={()=>this.goToDetail}
+        onPress={()=>this.goToDetail(item)}
       >
             
-        <View style={{backgroundColor: 'white'}}>
+        <View style={{ backgroundColor: 'white', height:50, borderBottomColor:'lightgrey', borderBottomWidth:0.5}}>
 
-          <Text>{item.city.$t}</Text>
+          <Text style={{marginLeft:10, marginTop:5 }}>{item.name.$t}</Text>
+          <Text style={{marginLeft:10, marginTop:5}}>{item.email.$t}</Text>
+
 
         </View>
             
@@ -37,7 +40,7 @@ export default class ResultScreen extends React.Component {
   };
 
   render() {
-    let params = this.props.navigation.getParam('data');
+    let params = this.props.navigation.getParam('data').shelter;
     console.log(params)
     return (
 
@@ -45,8 +48,8 @@ export default class ResultScreen extends React.Component {
 
 
            <FlatList
-            keyExtractor={this.keyExtractor}
-            data={params.shelter}
+            // keyExtractor={this.keyExtractor}
+            data={params}
             renderItem={this.renderList}
       />
   

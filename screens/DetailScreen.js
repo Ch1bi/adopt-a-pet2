@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList} from 'react-native';
 
 export default class DetailScreen extends React.Component {
   constructor(props) {
@@ -10,6 +10,27 @@ export default class DetailScreen extends React.Component {
     title: 'Detail'
   };
 
+
+  renderList = ({item}) =>{
+
+    return(
+
+      <TouchableHighlight
+        onPress={()=>this.goToDetail(item)}
+      >
+            
+        <View style={{ backgroundColor: 'white', height:50, borderBottomColor:'lightgrey', borderBottomWidth:0.5}}>
+
+          <Text style={{marginLeft:10, marginTop:5 }}>{item.name.$t}</Text>
+          <Text style={{marginLeft:10, marginTop:5}}>{item.email.$t}</Text>
+
+
+        </View>
+            
+      </TouchableHighlight>
+    ) 
+  }
+
   render() {
     let params = this.props.navigation.getParam('data');
     console.log(params)
@@ -17,10 +38,15 @@ export default class DetailScreen extends React.Component {
 
 
     return (
-      <View style={styles.container}>
-        {/* <Text>{`${params.description.$t} 
+      <View>
 
-            Contact Info: ${params.contact.email.$t}`}</Text> */}
+
+          <FlatList
+          // keyExtractor={this.keyExtractor}
+          data={params}
+          renderItem={this.renderList}
+          />
+
       </View>
     );
   }

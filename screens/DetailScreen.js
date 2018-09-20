@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
-import { StyleSheet, View, Text} from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, Image} from 'native-base';
+import { StyleSheet, View, Text, Image} from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right} from 'native-base';
 
 export default class DetailScreen extends React.Component {
   
@@ -10,7 +10,7 @@ export default class DetailScreen extends React.Component {
 
     this.state = {
 
-      data: null
+      data: []
     }
   };
 
@@ -26,33 +26,67 @@ export default class DetailScreen extends React.Component {
     //using the id, do another request to get pics from shelter
     axios.get(`http://api.petfinder.com/shelter.getPets?format=json&key=6a73b4c9e3c1fe19a365de064e4063ea&id=${id}&status=A`)
 
-    .then(res=>this.setState({data:res.data.petfinder.pets}))
+    .then(res=>{
+
+      const data = res.data.petfinder.pets.pet
+      this.setState({data})
+
+    })
+
+
     
   }
 
 
   render() {
-  
+
     return (
      
       <Container>
 
       <Content>
+
+
         
-      <Card>
+        {this.state.data.map((item, index)=>(
+
+
+            <Card key={index}>
+
             <CardItem>
               <Left>
-                <Thumbnail source={{uri: 'Image URL'}} />
                 <Body>
                   <Text>NativeBase</Text>
                   <Text note>GeekyAnts</Text>
                 </Body>
               </Left>
             </CardItem>
+
             <CardItem cardBody>
-              <Image source={{uri: 'Image URL'}} style={{height: 200, width: null, flex: 1}}/>
+              <Image source={{uri: item.media.photos.photo[0].$t}} style={{height: 200, width: null, flex: 1}}/>
+            </CardItem>
+
+            <CardItem>
+              <Left>
+                <Button transparent>
+                  <Icon active name="thumbs-up" />
+                  <Text>12 Likes</Text>
+                </Button>
+              </Left>
+              <Body>
+                <Button transparent>
+                  <Icon active name="chatbubbles" />
+                  <Text>4 Comments</Text>
+                </Button>
+              </Body>
+              <Right>
+                <Text>11h ago</Text>
+              </Right>
             </CardItem>
             </Card>
+
+        ))} 
+   
         
         </Content>        
         

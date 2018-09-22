@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView,FlatList,Text, View, TouchableHighlight} from 'react-native';
-import {Container, List, ListItem, Content} from 'native-base'
+import {Container, List, ListItem, Content, Right, Left, Icon} from 'native-base'
 
 export default class ResultScreen extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export default class ResultScreen extends React.Component {
 
       <Container>
 
-        <Content>
+     
 
           <List>
 
@@ -34,11 +34,15 @@ export default class ResultScreen extends React.Component {
 
               <ListItem
               onPress={()=>this.goToDetail(item)}>
+
               
-              <View>
-              <Text>{item.name.$t}</Text>
-               <Text>{item.email.$t}</Text>
-              </View>
+              <Left><Text>{item.name.$t}</Text></Left>
+               {/* <Text>{item.email.$t}</Text> */}
+               <Right>
+                <Icon name="arrow-forward" />
+              </Right>
+
+            
               
 
 
@@ -47,7 +51,7 @@ export default class ResultScreen extends React.Component {
 
           </List>
 
-        </Content>
+      
       </Container>
 
      

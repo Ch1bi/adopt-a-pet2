@@ -70,19 +70,24 @@ export default class DetailScreen extends React.Component {
             <CardItem>
               <Left>
                 <Button transparent>
-                  <Icon active name="thumbs-up" />
-                  <Text>12 Likes</Text>
+                  <Icon active name="star" />
+                  <Text>Favorite</Text>
                 </Button>
               </Left>
               <Body>
                 <Button transparent>
-                  <Icon active name="chatbubbles" />
-                  <Text>4 Comments</Text>
+                  
+                  <Text>Description</Text>
                 </Button>
               </Body>
+
               <Right>
-                <Text>11h ago</Text>
+              <Button transparent>
+                  <Icon active name="call" />
+                  <Text>Call</Text>
+                </Button>
               </Right>
+
             </CardItem>
             </Card>
 

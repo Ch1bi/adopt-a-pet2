@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView,FlatList,Text, View, TouchableHighlight} from 'react-native';
+import {Container, List, ListItem, Content} from 'native-base'
 
 export default class ResultScreen extends React.Component {
   constructor(props) {
@@ -13,27 +14,6 @@ export default class ResultScreen extends React.Component {
     this.props.navigation.navigate('Detail', { data: stuff });
   };
 
-  // keyExtractor = (item, index) => item.name.$t;
-
-  renderList = ({item}) =>{
-
-    return(
-
-      <TouchableHighlight
-        onPress={()=>this.goToDetail(item)}
-      >
-            
-        <View style={{ backgroundColor: 'white', height:50, borderBottomColor:'lightgrey', borderBottomWidth:0.5}}>
-
-          <Text style={{marginLeft:10, marginTop:5 }}>{item.name.$t}</Text>
-          <Text style={{marginLeft:10, marginTop:5}}>{item.email.$t}</Text>
-
-
-        </View>
-            
-      </TouchableHighlight>
-    ) 
-  }
 
   static navigationOptions = {
     title: 'Search'
@@ -44,16 +24,31 @@ export default class ResultScreen extends React.Component {
     console.log(params)
     return (
 
-      <View>
+      <Container>
+
+        <Content>
+
+          <List>
+
+            {params.map((item, index)=>(
+
+              <ListItem
+              onPress={()=>this.goToDetail(item)}>
+              
+              <View>
+              <Text>{item.name.$t}</Text>
+               <Text>{item.email.$t}</Text>
+              </View>
+              
 
 
-           <FlatList
-            // keyExtractor={this.keyExtractor}
-            data={params}
-            renderItem={this.renderList}
-      />
-  
-      </View>
+              </ListItem>
+            ))}
+
+          </List>
+
+        </Content>
+      </Container>
 
      
     )

@@ -40,6 +40,7 @@ export default class DetailScreen extends React.Component {
 
   render() {
 
+    {console.log(this.state.data)}
     return (
      
       <Container>
@@ -56,14 +57,14 @@ export default class DetailScreen extends React.Component {
             <CardItem>
               <Left>
                 <Body>
-                  <Text>NativeBase</Text>
-                  <Text note>GeekyAnts</Text>
+                  <Text>{item.name.$t}</Text>
+                  <Text note>{item.breeds.breed.$t}</Text>
                 </Body>
               </Left>
             </CardItem>
 
             <CardItem cardBody>
-              <Image source={{uri: item.media.photos.photo[0].$t}} style={{height: 200, width: null, flex: 1}}/>
+              <Image source={{uri: item.media.photos.photo[3].$t}} style={{width: 10, height: 300, flex: 1}}/>
             </CardItem>
 
             <CardItem>

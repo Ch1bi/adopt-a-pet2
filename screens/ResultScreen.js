@@ -10,7 +10,7 @@ export default class ResultScreen extends React.Component {
 
 
   goToDetail = (stuff) => {
-    console.log(stuff)
+    // console.log(stuff)
     this.props.navigation.navigate('Detail', { data: stuff });
   };
 
@@ -21,7 +21,7 @@ export default class ResultScreen extends React.Component {
 
   render() {
     let params = this.props.navigation.getParam('data').shelter;
-    console.log(params)
+    // console.log(params)
     return (
 
       <Container>
@@ -33,6 +33,7 @@ export default class ResultScreen extends React.Component {
             {params.map((item, index)=>(
 
               <ListItem
+              key={index}
               onPress={()=>this.goToDetail(item)}>
 
               

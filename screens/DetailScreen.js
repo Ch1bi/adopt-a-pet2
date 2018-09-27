@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import { StyleSheet, View, Text, Image} from 'react-native';
+import { saveFavorite } from '../db/storage'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right} from 'native-base';
 
 export default class DetailScreen extends React.Component {
@@ -19,7 +20,6 @@ export default class DetailScreen extends React.Component {
   };
 
   componentDidMount(){
-
     //extract id from bundle
     let id = this.props.navigation.getParam('data').id.$t
     
@@ -32,23 +32,17 @@ export default class DetailScreen extends React.Component {
       this.setState({data})
 
     })
-
-
     
   }
 
-
   render() {
 
-    {console.log(this.state.data)}
     return (
      
       <Container>
 
       <Content>
-
-
-        
+  
         {this.state.data.map((item, index)=>(
 
 
@@ -69,7 +63,8 @@ export default class DetailScreen extends React.Component {
 
             <CardItem>
               <Left>
-                <Button transparent>
+                <Button transparent
+                onPress={this.saveFavorite}>
                   <Icon active name="star" />
                   <Text>Favorite</Text>
                 </Button>

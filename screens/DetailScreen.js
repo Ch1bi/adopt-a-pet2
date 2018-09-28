@@ -38,9 +38,14 @@ export default class DetailScreen extends React.Component {
     
   }
 
-  saveFavorite = (animal)=>{
-     console.log('adding animal')
-    AsyncStorage.setItem('animals', JSON.stringify(animal));
+  saveFavorite = (item)=>{
+    AsyncStorage.getItem('animals')
+    .then((animals) => {
+          console.log(animals)
+        let ani = animals? JSON.parse(animals) : []
+        ani.push(item)
+        AsyncStorage.setItem('animals', JSON.stringify(ani));
+    }); 
     
 }
 

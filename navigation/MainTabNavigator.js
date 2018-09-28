@@ -35,8 +35,13 @@ const FavStack = createStackNavigator({
   }
 })
 
+const TabNavigator = createMaterialTopTabNavigator({
 
-export default createMaterialTopTabNavigator({
   Search: HomeStack,
   Favorites: FavStack
-});
+
+})
+
+
+
+export default TabNavigator;

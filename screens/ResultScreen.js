@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, ScrollView,FlatList,Text, View, TouchableHighlight} from 'react-native';
 import {Container, List, ListItem, Content, Right, Left, Icon} from 'native-base'
 
+
+
 export default class ResultScreen extends React.Component {
   constructor(props) {
     super(props);

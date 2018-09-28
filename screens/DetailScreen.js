@@ -1,8 +1,11 @@
 import React from 'react';
 import axios from 'axios'
-import { StyleSheet, View, Text, Image} from 'react-native';
-import { saveFavorite } from '../db/storage'
+import { AsyncStorage, StyleSheet, View, Text, Image} from 'react-native';
+// import { saveFavorite } from '../db/storage'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right} from 'native-base';
+
+
+
 
 export default class DetailScreen extends React.Component {
   
@@ -35,6 +38,12 @@ export default class DetailScreen extends React.Component {
     
   }
 
+  saveFavorite = (animal)=>{
+     console.log('adding animal')
+    AsyncStorage.setItem('animals', JSON.stringify(animal));
+    
+}
+
   render() {
 
     return (
@@ -64,7 +73,7 @@ export default class DetailScreen extends React.Component {
             <CardItem>
               <Left>
                 <Button transparent
-                onPress={this.saveFavorite}>
+                onPress={()=>this.saveFavorite(item)}>
                   <Icon active name="star" />
                   <Text>Favorite</Text>
                 </Button>

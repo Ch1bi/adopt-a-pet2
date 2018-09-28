@@ -1,7 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { AsyncStorage, StyleSheet, View, Text, TextInput, Button } from 'react-native';
+// import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right} from 'native-base';
+
 
 import axios from 'axios';
+
+
 
 export default class FavScreen extends React.Component {
   constructor(props) {
@@ -10,7 +14,18 @@ export default class FavScreen extends React.Component {
     
   }
 
+  static navigationOptions = ({ navigation }) => {
+    navigation.addListener('didFocus', () => {
+      console.log('tab did focus');
+    });
+  };
+  
+  
+
+  
   render() {
+
+    
 
 
     return (
